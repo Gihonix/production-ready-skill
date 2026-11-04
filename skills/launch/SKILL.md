@@ -31,7 +31,7 @@ is `launch-fix`, with approval.
 | 6 | `launch-verdict` | Can I go live? | `verdict.json`, `verdict.md`, `history.json` |
 | 7 | `launch-fix` | Fix what you found | commits on `launch-ready/fixes` |
 | 8 | `launch-report` | Show me | `report.html` |
-| 9 | `launch-roadmap` | What do I do each day until launch? | `roadmap.json`, `roadmap.md`, a design in OpenFrame |
+| 9 | `launch-roadmap` | What do I do each day until launch? | `roadmap.json`, `roadmap.md`, roadmap panel in `report.html` |
 | 10 | `launch-day` | How do I go live safely? | `runbook.md` |
 | 11 | `launch-watch` | What do I watch after? | `watch.md`, `monitoring/` |
 
