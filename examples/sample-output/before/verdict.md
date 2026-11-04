@@ -1,8 +1,8 @@
 # Launch verdict: **Not yet**
 
-Readiness **10/100** · Confidence **72/100** (how much was verified rather than guessed) · Open blockers **10**
+Readiness **9/100** · Confidence **75/100** (how much was verified rather than guessed) · Open blockers **12**
 
-Fixing the blockers: about 5.8 h of work (rough estimate).
+Fixing the blockers: about 6.8 h of work (rough estimate).
 
 **Safe to soft-launch?** Not with real users' data or money yet. Open blockers in data, payments, security could expose data or lose money. Fix those first, then a small private beta is reasonable.
 
@@ -21,6 +21,7 @@ Fixing the blockers: about 5.8 h of work (rough estimate).
 | security | 18 | 95 | 2 | 9 | 1 |
 | payments | 0 | 26 | 0 | 1 | 4 |
 | data | 22 | 44 | 1 | 1 | 1 |
+| business | 0 | 100 | 0 | 3 | 0 |
 | legal | 0 | 100 | 0 | 3 | 0 |
 | reliability | 0 | 85 | 0 | 6 | 1 |
 | auth | 0 | 0 | 0 | 0 | 1 |

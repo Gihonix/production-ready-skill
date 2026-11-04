@@ -25,6 +25,7 @@ SHOTS = [
     ("map", "before", 1000, ["What your app actually is"], None, False),
     ("journey-pricing", "before", 1000, ["User journey", "Pricing vs competitors"], None, False),
     ("findings", "before", 1000, ["All findings"], 5, False),
+    ("roadmap", "before", 1000, ["Launch roadmap"], None, False),
     ("progress", "after", 1000, ["__top", "Progress"], None, False),
     ("verdict-dark", "before", 1000, ["__top"], None, True),
     ("mobile", "before", 390, ["__top", "Fix these first"], None, False),
@@ -44,6 +45,9 @@ if(cfg.limit){Array.prototype.slice.call(document.querySelectorAll('.f')).forEac
 DARK = ":root{--bg:#13110f;--card:#1c1917;--ink:#f5f5f4;--mut:#a8a29e;--line:#2e2a27;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--acc:#60a5fa;--okbg:#14301e;--warnbg:#33260c;--badbg:#3a1414}"
 
 
+MAX_H = {"roadmap": 1950}  # px at 2x; the full roadmap panel is much taller than a README needs
+
+
 def trim(path, bg_probe=(2, 2)):
     im = Image.open(path).convert("RGB")
     bg = Image.new("RGB", im.size, im.getpixel(bg_probe))
@@ -51,6 +55,9 @@ def trim(path, bg_probe=(2, 2)):
     if box:
         pad = 24 * 2
         im = im.crop((0, 0, im.width, min(im.height, box[3] + pad)))
+    cap = MAX_H.get(os.path.basename(path)[:-4])
+    if cap and im.height > cap:
+        im = im.crop((0, 0, im.width, cap))
     im.save(path, optimize=True)
 
 

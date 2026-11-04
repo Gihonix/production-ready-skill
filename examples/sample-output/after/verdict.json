@@ -1,13 +1,13 @@
 {
-  "generated": "2026-11-04T11:20:41Z",
+  "generated": "2026-11-04T13:49:03Z",
   "verdict": "Ready",
-  "readiness": 84,
-  "confidence": 86,
+  "readiness": 86,
+  "confidence": 87,
   "blockers_open": 0,
   "blockers_failing": 0,
   "blockers_unverified": 0,
   "open_total": 8,
-  "passed": 31,
+  "passed": 34,
   "estimated_blocker_fix_minutes": 0,
   "areas": {
     "security": {
@@ -29,6 +29,13 @@
       "confidence": 100,
       "pass": 2,
       "fail": 1,
+      "unknown": 0
+    },
+    "business": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 3,
+      "fail": 0,
       "unknown": 0
     },
     "legal": {

@@ -1,6 +1,6 @@
 # Launch verdict: **Ready**
 
-Readiness **84/100** · Confidence **86/100** (how much was verified rather than guessed) · Open blockers **0**
+Readiness **86/100** · Confidence **87/100** (how much was verified rather than guessed) · Open blockers **0**
 
 **Safe to soft-launch?** Yes. Open it to real users, starting small and watching the first day (see launch-watch).
 
@@ -19,6 +19,7 @@ Readiness **84/100** · Confidence **86/100** (how much was verified rather than
 | security | 95 | 95 | 11 | 0 | 1 |
 | payments | 79 | 79 | 3 | 0 | 2 |
 | data | 78 | 100 | 2 | 1 | 0 |
+| business | 100 | 100 | 3 | 0 | 0 |
 | legal | 100 | 100 | 3 | 0 | 0 |
 | reliability | 85 | 85 | 6 | 0 | 1 |
 | auth | 0 | 0 | 0 | 0 | 1 |

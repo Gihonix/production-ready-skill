@@ -40,11 +40,30 @@ def extras(d):
                           {"title": "Week one", "items": ["Check errors daily", "Review failed payments"]}]}, open(os.path.join(L, "checklist.json"), "w"))
 
 
+def improve(d, state):
+    """Business gaps and suggestions, as launch-improve would write them (BIZ ids and titles from essentials.md)."""
+    gaps = [
+        ("BIZ-07", "Refund and cancellation terms", "blocker", "Buyers who can't find the refund rules turn into chargebacks."),
+        ("BIZ-13", "A way for users to reach you", "blocker", "Paying customers need a working support address and an owner who reads it."),
+        ("BIZ-15", "Named first channel", "should", "Name the one place the first 20 users come from."),
+    ]
+    issues = [dict(id=i, kind="gap", severity=sev, status="FAIL" if state == "before" else "PASS", title=t, why=w, area="business")
+              for i, t, sev, w in gaps]
+    issues.append(dict(id="IMP-01", kind="suggestion", severity="nice", status="FAIL", title="Put a demo above the fold",
+                       why="A 20-second demo lifts sign-ups more than any copy change.", effort="S", value="high", area="business"))
+    json.dump({"issues": issues}, open(os.path.join(d, "launch", "improve.json"), "w"))
+
+
+def roadmap(d, days):
+    run(S("launch-roadmap/roadmap.py"), d, "--days", str(days), "--hours", "4")
+
+
 def snapshot(d, name):
     out = os.path.join(REPO, "examples/sample-output", name)
     shutil.rmtree(out, ignore_errors=True)
     os.makedirs(out)
-    for n in ("report.html", "verdict.md", "verdict.json", "findings.json", "inventory.json", "history.json"):
+    for n in ("report.html", "verdict.md", "verdict.json", "findings.json", "inventory.json", "history.json",
+              "improve.json", "roadmap.json", "roadmap.md"):
         shutil.copy(os.path.join(d, "launch", n), out)
 
 
@@ -55,8 +74,11 @@ def main():
         fixtures.make_bad_next(d)
         run(S("launch-scan/scan.py"), d)
         run(S("launch-gaps/checks.py"), d, "--context", CTX)
+        os.makedirs(os.path.join(d, "launch"), exist_ok=True)
+        improve(d, "before")
         run(S("launch-verdict/verdict.py"), d)
         extras(d)
+        roadmap(d, 7)
         run(S("launch-report/report.py"), d)
         snapshot(d, "before")
         # "after": same project with the planted flaws fixed, then the owner confirms the manual items
@@ -67,6 +89,7 @@ def main():
         fixtures.make_good_next(d)
         run(S("launch-scan/scan.py"), d)
         run(S("launch-gaps/checks.py"), d, "--context", CTX)
+        improve(d, "after")
         run(S("launch-verdict/verdict.py"), d)  # Almost: manual blockers still unverified
         fp = os.path.join(d, "launch/findings.json")
         doc = json.load(open(fp))
@@ -82,6 +105,7 @@ def main():
         for s in j["journey"]:
             s["status"], s["note"] = "ok", "done"
         json.dump(j, open(lg, "w"))
+        roadmap(d, 3)
         run(S("launch-report/report.py"), d)
         snapshot(d, "after")
     finally:

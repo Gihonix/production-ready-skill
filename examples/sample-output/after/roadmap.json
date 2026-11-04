@@ -1,0 +1,279 @@
+{
+  "generated": "2026-11-04T13:49:03Z",
+  "days": 3,
+  "hours_per_day": 4.0,
+  "start": null,
+  "verdict_at_planning": "Ready",
+  "readiness_at_planning": 86,
+  "plan": [
+    {
+      "index": 1,
+      "kind": "work",
+      "tasks": [
+        {
+          "id": "SEC-11",
+          "title": "Verify: Dependencies have no known critical vulnerabilities",
+          "minutes": 45,
+          "kind": "fix",
+          "severity": "should",
+          "area": "security",
+          "why": "Old packages are the most common way small apps get hacked.",
+          "source": "SEC-11"
+        },
+        {
+          "id": "PAY-02",
+          "title": "Verify: Webhook handling is idempotent (same event twice = one effect)",
+          "minutes": 45,
+          "kind": "fix",
+          "severity": "should",
+          "area": "payments",
+          "why": "Payment providers retry; duplicates can double-grant credits or double-send emails.",
+          "source": "PAY-02"
+        },
+        {
+          "id": "PAY-04",
+          "title": "Verify: Failed payment and cancellation paths exist",
+          "minutes": 45,
+          "kind": "fix",
+          "severity": "should",
+          "area": "payments",
+          "why": "Cards fail and customers cancel every week. Without handling, access and billing drift apart.",
+          "source": "PAY-04"
+        },
+        {
+          "id": "DATA-03",
+          "title": "Fix: Users can delete their account/data",
+          "minutes": 45,
+          "kind": "fix",
+          "severity": "should",
+          "area": "data",
+          "why": "Privacy laws (GDPR/CCPA) expect it, and users ask within weeks.",
+          "source": "DATA-03"
+        },
+        {
+          "id": "REL-07",
+          "title": "Verify: Outbound calls (APIs, AI, email) have timeouts and failure handling",
+          "minutes": 45,
+          "kind": "fix",
+          "severity": "should",
+          "area": "reliability",
+          "why": "One slow third party can hang every request or crash the server.",
+          "source": "REL-07"
+        }
+      ],
+      "theme": "Polish: Security, Payments",
+      "goal": "Raise the score; nothing here blocks launch.",
+      "minutes": 225,
+      "label": "Day 1",
+      "exit_criteria": [
+        "Every task above ticked",
+        "Re-run /launch-gaps and /launch-verdict; score has not dropped"
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "rehearsal",
+      "tasks": [
+        {
+          "id": "R-01",
+          "title": "Code freeze: only fixes for problems the rehearsal finds",
+          "minutes": 10,
+          "kind": "gate",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "R-02",
+          "title": "Restore last night's backup into a scratch database and open the app",
+          "minutes": 45,
+          "kind": "check",
+          "severity": null,
+          "area": null,
+          "why": "A backup you have never restored is a hope, not a backup.",
+          "source": "plan"
+        },
+        {
+          "id": "R-03",
+          "title": "Rollback drill: deploy a harmless change, then roll back to the previous deploy",
+          "minutes": 30,
+          "kind": "check",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "R-04",
+          "title": "Run the 10-minute smoke test end to end on a phone",
+          "minutes": 30,
+          "kind": "check",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "R-05",
+          "title": "Have 3 to 5 people sign up cold; watch where they stall, do not help",
+          "minutes": 60,
+          "kind": "check",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "R-06",
+          "title": "Write the announcement post and the first support-reply templates",
+          "minutes": 45,
+          "kind": "prep",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        }
+      ],
+      "theme": "Rehearse",
+      "goal": "Break it on purpose while it is still safe.",
+      "minutes": 220,
+      "label": "Day 2",
+      "exit_criteria": [
+        "Backup restored, rollback worked, a stranger finished signup",
+        "Announcement text is written"
+      ]
+    },
+    {
+      "index": 3,
+      "kind": "launch",
+      "tasks": [
+        {
+          "id": "L-01",
+          "title": "Go / no-go gate: blockers cleared, backup restored, someone else signed up",
+          "minutes": 20,
+          "kind": "gate",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "L-02",
+          "title": "Deploy to production (you press the button; nothing here deploys for you)",
+          "minutes": 20,
+          "kind": "launch",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "L-03",
+          "title": "Run the 10-minute smoke test on production and write down the time",
+          "minutes": 15,
+          "kind": "check",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "L-04",
+          "title": "Announce to the first small group, then widen (private beta, waitlist, public)",
+          "minutes": 30,
+          "kind": "launch",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "L-05",
+          "title": "Watch errors, signups and payments for the first hour; answer every message",
+          "minutes": 60,
+          "kind": "watch",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        },
+        {
+          "id": "L-06",
+          "title": "Write down day-one numbers and the three things you would change first",
+          "minutes": 20,
+          "kind": "watch",
+          "severity": null,
+          "area": null,
+          "why": null,
+          "source": "plan"
+        }
+      ],
+      "theme": "Launch Day",
+      "goal": "Ship it, watch it, learn from it.",
+      "minutes": 165,
+      "label": "Launch Day",
+      "exit_criteria": [
+        "Smoke test passes on production",
+        "You can see errors and signups as they happen"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "id": "AUTH-01",
+      "title": "Verify: Password reset and email verification work (or a managed provider handles them)",
+      "minutes": 45,
+      "kind": "fix",
+      "severity": "should",
+      "area": "auth",
+      "why": "Users who forget a password become support tickets or lost customers; unverified emails enable abuse.",
+      "source": "AUTH-01"
+    },
+    {
+      "id": "EMAIL-01",
+      "title": "Verify: Sending domain has SPF, DKIM and DMARC",
+      "minutes": 30,
+      "kind": "fix",
+      "severity": "should",
+      "area": "email",
+      "why": "Otherwise your signup and receipt emails land in spam.",
+      "source": "EMAIL-01"
+    },
+    {
+      "id": "OPS-01",
+      "title": "Verify: You can roll back a bad deploy",
+      "minutes": 30,
+      "kind": "fix",
+      "severity": "should",
+      "area": "operations",
+      "why": "The first bad release will happen; you need a way back in minutes.",
+      "source": "OPS-01"
+    },
+    {
+      "id": "IMP-01",
+      "title": "Fix: Put a demo above the fold",
+      "minutes": 30,
+      "kind": "fix",
+      "severity": "nice",
+      "area": "business",
+      "why": "A 20-second demo lifts sign-ups more than any copy change.",
+      "source": "IMP-01"
+    }
+  ],
+  "after_launch": [
+    {
+      "when": "Day +1",
+      "title": "Read every error and support message; fix what blocks a new user"
+    },
+    {
+      "when": "Week 1",
+      "title": "Review funnel: signup to first value to payment; pick one thing to improve"
+    },
+    {
+      "when": "Day 30",
+      "title": "Re-run /launch, compare the score, plan the next month"
+    }
+  ],
+  "warnings": []
+}

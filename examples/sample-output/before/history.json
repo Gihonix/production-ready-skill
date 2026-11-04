@@ -1,9 +1,9 @@
 [
   {
-    "ts": "2026-11-04T11:20:40Z",
-    "readiness": 10,
-    "confidence": 72,
+    "ts": "2026-11-04T13:49:03Z",
+    "readiness": 9,
+    "confidence": 75,
     "verdict": "Not yet",
-    "blockers": 10
+    "blockers": 12
   }
 ]
