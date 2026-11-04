@@ -75,8 +75,16 @@ def main():
             p = os.path.join(tmp, name + ".html")
             open(p, "w").write(page)
             out = os.path.join(OUT, name + ".png")
+            size, target = "%d,1500" % width, p
+            if name == "mobile":
+                # headless Chrome will not go narrower than ~500px, so show the page in a real 390px iframe
+                target = os.path.join(tmp, "mobile-frame.html")
+                open(target, "w").write(
+                    '<body style="margin:0;background:#e7e5e4;display:flex;justify-content:center;padding:30px 0">'
+                    '<iframe src="file://%s" style="width:390px;height:1250px;border:10px solid #1c1917;border-radius:38px;background:#fafaf9"></iframe></body>' % p)
+                size = "520,1400"
             subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=2",
-                            "--window-size=%d,1500" % width, "--virtual-time-budget=2000", "--screenshot=" + out, "file://" + p],
+                            "--window-size=" + size, "--virtual-time-budget=2000", "--screenshot=" + out, "file://" + target],
                            check=True, capture_output=True)
             trim(out)
             print("wrote", os.path.relpath(out, REPO))
