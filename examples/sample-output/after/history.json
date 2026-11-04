@@ -1,20 +1,20 @@
 [
   {
-    "ts": "2026-11-04T13:49:03Z",
+    "ts": "2026-11-04T17:04:13Z",
     "readiness": 9,
     "confidence": 75,
     "verdict": "Not yet",
     "blockers": 12
   },
   {
-    "ts": "2026-11-04T13:49:03Z",
+    "ts": "2026-11-04T17:04:14Z",
     "readiness": 72,
     "confidence": 74,
     "verdict": "Almost",
     "blockers": 3
   },
   {
-    "ts": "2026-11-04T13:49:03Z",
+    "ts": "2026-11-04T17:04:14Z",
     "readiness": 86,
     "confidence": 87,
     "verdict": "Ready",
