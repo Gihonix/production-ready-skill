@@ -1,0 +1,2 @@
+# payments-live-mode (manual)
+Never done by Claude. Steps for the owner: 1) Complete the provider's account activation. 2) Create the LIVE products/prices; put live Price IDs in production env. 3) Set live secret key and a NEW live webhook endpoint + secret in the host env (test and live webhook secrets differ). 4) Make one real small purchase, then refund it. 5) Confirm access was granted by the webhook and the receipt email arrived.

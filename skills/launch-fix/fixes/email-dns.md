@@ -1,0 +1,2 @@
+# email-dns (manual)
+Owner steps at the DNS provider for the sending domain: add the SPF include and DKIM records the email provider shows, add a DMARC record (`v=DMARC1; p=none; rua=mailto:...` first, tighten later), wait for the provider to show "verified", send a test to a Gmail and an Outlook address and check it is not in spam. Use a subdomain (mail.example.com) for transactional mail if possible.

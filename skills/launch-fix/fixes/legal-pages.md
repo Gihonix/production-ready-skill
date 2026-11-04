@@ -1,0 +1,2 @@
+# legal-pages (auto)
+Create Privacy Policy, Terms of Service and (if charging) Refund/Cancellation pages from a standard template filled with facts from the code: what data is collected (from the scan), which services receive it (Stripe, analytics, email provider), contact email, governing country. Put a visible "Draft: have a lawyer review before publishing" comment in the file and tell the owner. Link them in the footer and at signup. This is a template, not legal advice.
