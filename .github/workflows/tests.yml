@@ -1,0 +1,25 @@
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.8", "3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run end-to-end tests
+        run: python tests/run_tests.py
+      - name: Checklist is up to date
+        shell: bash
+        run: |
+          python skills/launch-gaps/checks.py --catalog > /tmp/checklist.md
+          diff <(tr -d '\r' < /tmp/checklist.md) <(tr -d '\r' < skills/launch-gaps/checklist.md) || (echo "Regenerate skills/launch-gaps/checklist.md" && exit 1)
