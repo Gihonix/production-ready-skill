@@ -70,7 +70,7 @@ def structure():
     # nothing author- or machine-specific
     bad = []
     for dp, dns, fns in os.walk(REPO):
-        dns[:] = [d for d in dns if d not in (".git", "__pycache__")]
+        dns[:] = [d for d in dns if d not in (".git", "__pycache__", "product-video")]
         for fn in fns:
             if fn == "run_tests.py":
                 continue
