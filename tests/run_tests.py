@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """End-to-end tests. No dependencies: python3 tests/run_tests.py"""
+import datetime
 import json
 import os
 import shutil
@@ -18,6 +19,7 @@ CHECKS = os.path.join(REPO, "skills/launch-gaps/checks.py")
 VERDICT = os.path.join(REPO, "skills/launch-verdict/verdict.py")
 COST = os.path.join(REPO, "skills/launch-pricing/cost_model.py")
 REPORT = os.path.join(REPO, "skills/launch-report/report.py")
+ROADMAP = os.path.join(REPO, "skills/launch-roadmap/roadmap.py")
 failures = []
 
 
@@ -58,7 +60,7 @@ def structure():
         m = re.match(r"---\nname: (.+)\ndescription: >-\n((?:  .+\n)+)(?:argument-hint: .+\n)?---\n", txt)
         check(bool(m) and m.group(1) == n, "%s/SKILL.md has valid frontmatter and name matches folder" % n)
         check(bool(m) and len(" ".join(m.group(2).split())) < 1000, "%s description under 1000 chars" % n)
-    check(len(names) == 10, "10 skills present (got %d)" % len(names))
+    check(len(names) == 12, "12 skills present (got %d)" % len(names))
     missing = [c["fix_id"] for c in checks.CATALOG if not os.path.isfile(os.path.join(sdir, "launch-fix/fixes", c["fix_id"] + ".md"))]
     check(not missing, "every fix_id has a recipe (missing: %s)" % sorted(set(missing)))
     ids = [c["id"] for c in checks.CATALOG]
@@ -131,6 +133,36 @@ def main():
                 check(f2[fid]["status"] == "FAIL" and f2[fid]["evidence"], "%s: %s flagged with evidence" % (name, fid))
 
         structure()
+
+        print("improve gaps and roadmap")
+        imp = os.path.join(tmp, "imp")
+        shutil.copytree(good, imp)
+        base = json.load(open(os.path.join(imp, "launch/verdict.json")))
+        json.dump({"issues": [
+            {"id": "BIZ-07", "kind": "gap", "severity": "blocker", "status": "FAIL", "title": "No refund terms"},
+            {"id": "IMP-01", "kind": "suggestion", "severity": "nice", "status": "FAIL", "title": "Demo above the fold",
+             "effort": "S", "value": "high"}]}, open(os.path.join(imp, "launch/improve.json"), "w"))
+        run(VERDICT, imp, "--no-history")
+        v2 = json.load(open(os.path.join(imp, "launch/verdict.json")))
+        check(v2["blockers_open"] == base["blockers_open"] + 1 and v2["verdict"] != "Ready",
+              "an open BIZ blocker counts in the verdict; suggestions do not")
+        check("business" in v2["areas"], "business is scored as its own area")
+        if os.path.isfile(ROADMAP):
+            for n in (1, 2, 3, 7):
+                run(ROADMAP, imp, "--days", str(n), "--start", "2026-11-10")
+                rm = json.load(open(os.path.join(imp, "launch/roadmap.json")))
+                labels = [d["label"] for d in rm["plan"]]
+                check(len(labels) == n and labels[-1] == "Launch Day", "%d-day roadmap ends in Launch Day" % n)
+                ids = [t["id"] for d in rm["plan"] for t in d["tasks"]] + [t["id"] for t in rm["deferred"]]
+                check("BIZ-07" in ids, "%d-day roadmap never drops an open blocker" % n)
+                check(rm["plan"][-1]["date"] == str(datetime.date(2026, 11, 10) + datetime.timedelta(days=n - 1)),
+                      "%d-day roadmap dates run to the right Launch Day" % n)
+            check(run(ROADMAP, imp, "--days", "0").returncode != 0, "roadmap rejects 0 days")
+            run(ROADMAP, imp, "--days", "5", "--start", "2026-11-10")
+            run(REPORT, imp)
+            rh = open(os.path.join(imp, "launch/report.html")).read()
+            check('class="rm"' in rh and "Launch Day" in rh and "Launch in 5 days" in rh, "report renders the roadmap panel")
+            check("BIZ-07" in rh, "report lists business gaps from improve.json")
 
         if os.path.isfile(COST):
             print("cost model")

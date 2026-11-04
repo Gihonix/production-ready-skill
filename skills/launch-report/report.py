@@ -2,7 +2,7 @@
 """launch-report: render launch/report.html, one offline, self-contained page.
 
 Stdlib only (Python 3.8+). No network requests, no CDN. Reads whatever exists in launch/:
-  inventory.json  findings.json  verdict.json  history.json  logic.json  pricing.json  checklist.json
+  inventory.json  findings.json  verdict.json  history.json  logic.json  pricing.json  checklist.json  roadmap.json  improve.json
 
     python3 report.py [project_dir] [--out launch/report.html]
 
@@ -174,6 +174,32 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 8px;b
 .st-FAIL{color:var(--bad)}.st-UNKNOWN{color:var(--warn)}.st-PASS{color:var(--ok)}code{font-size:12px;background:var(--line);border-radius:4px;padding:0 4px}
 .chk label{display:flex;gap:8px;padding:4px 0}.chk h3{margin:14px 0 4px;font-size:14px}
 footer{margin-top:40px;font-size:12px;color:var(--mut)}@media print{.filters,.theme{display:none}body{background:#fff}}
+.rm{--g:#0e1116;--s:#232932;--m:#9aa1ab;--a:#ffc400;--b:#7cc4ff;background:var(--g);color:#fff;border-radius:12px;overflow:hidden;margin:12px 0 24px}
+.rm p{margin:0}.rm-head{padding:40px 40px 32px;display:flex;gap:32px;justify-content:space-between;align-items:flex-end;flex-wrap:wrap}
+.rm-head h3{font-size:56px;line-height:1.05;margin:0 0 16px;color:#fff}.rm-sub{color:var(--m);font-size:17px;max-width:620px}
+.rm-leg{display:flex;gap:20px;margin-top:16px;font-size:14px}.rm-leg i,.rm-t i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}
+.rm-bars{display:flex;gap:10px;align-items:flex-end;height:150px;border-bottom:1px solid var(--m);padding:0 2px}.rm-bar{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;width:44px;font-size:12px}
+.rm-bar b{display:block;width:44px;background:var(--m);border-radius:4px}.rm-bar.l b{background:var(--a)}.rm-bl{display:flex;gap:10px;margin-top:6px}.rm-bl span{width:44px;text-align:center;font-size:12px;color:var(--m)}.rm-bl .l{color:var(--a)}
+.rm-cap{font-size:13px;color:var(--m);margin-top:8px}
+.rm-warn{background:#3a2a00;color:var(--a);padding:14px 40px;font-weight:600}
+.rm-day{display:flex;gap:48px;padding:40px;border-top:1px solid var(--s)}.rm-rail{width:240px;flex-shrink:0}.rm-rail h4{font-size:38px;line-height:1.1;margin:0 0 8px;color:inherit}
+.rm-rail .d{color:var(--m)}.rm-rail .th{font-size:19px;font-weight:600;margin:8px 0}.rm-rail .bk{color:var(--a);font-weight:600;font-size:14px;margin-top:6px}.rm-rail .pr{font-size:13px;color:var(--m);margin-top:6px}
+.rm-body{flex:1;min-width:0}.rm-list{display:grid;grid-template-columns:1fr 1fr;column-gap:32px}.rm-list.one{grid-template-columns:1fr}
+.rm-t{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--s);cursor:pointer}.rm-t input{width:18px;height:18px;flex-shrink:0;accent-color:var(--a)}
+.rm-t span{flex:1;line-height:1.4}.rm-t em{font-style:normal;font-size:13px;color:var(--m);white-space:nowrap}.rm-t.risk span{color:var(--a)}
+.rm-t input:checked+i+span{text-decoration:line-through;color:var(--m)}
+.rm-done{margin-top:18px}.rm-done b{display:block;font-size:14px}.rm-done span{font-size:14px;color:var(--m)}
+.rm-infra{background:var(--s)}.rm-infra .rm-t{border-color:var(--g)}
+.rm-reh h5{font-size:34px;line-height:1.15;margin:0 0 20px;color:#fff}.rm-reh .rm-in{display:flex;gap:40px;flex-wrap:wrap}.rm-reh .rm-in>div:first-child{flex:1;min-width:280px}
+.rm-reh .rm-done{border-left:3px solid var(--a);padding-left:16px;width:240px;margin:0;align-self:flex-start}
+.rm-launch{background:var(--a);color:var(--g);border-top:0;padding:56px 40px}.rm-launch .rail-h{font-size:72px;line-height:.98;font-weight:700;margin:0 0 14px;color:var(--g)}
+.rm-launch .rm-rail{width:300px}.rm-launch .th{font-size:24px;font-weight:600;line-height:1.25}.rm-launch .d,.rm-launch .pr,.rm-launch .rm-done span,.rm-launch .rm-t em{color:var(--g)}
+.rm-launch .rm-t{border-color:var(--g);font-size:18px}.rm-launch .rm-t input{accent-color:var(--g)}.rm-launch .tm{font-weight:700;width:48px;flex-shrink:0}
+.rm-after{padding:48px 40px;border-top:1px solid var(--s)}.rm-after h5{font-size:30px;margin:0 0 24px;color:#fff}.rm-after .c{display:flex;gap:32px;flex-wrap:wrap}.rm-after .c div{flex:1;min-width:200px}
+.rm-after b{display:block;font-size:22px;color:var(--a);margin-bottom:6px}.rm-foot{padding:0 40px 28px;font-size:13px;color:var(--m)}
+.rm-def{padding:24px 40px;border-top:1px solid var(--s)}.rm-def h5{font-size:18px;margin:0 0 8px;color:#fff}.rm-def li{color:var(--m);font-size:14px}
+@media (max-width:760px){.rm-head{padding:28px 20px}.rm-head h3{font-size:40px}.rm-day,.rm-launch,.rm-after{padding:24px 20px;flex-direction:column;gap:16px}.rm-rail,.rm-launch .rm-rail{width:auto}.rm-list{grid-template-columns:1fr}.rm-launch .rail-h{font-size:48px}.rm-warn{padding:12px 20px}.rm-foot,.rm-def{padding-left:20px;padding-right:20px}}
+@media print{.rm{break-inside:auto}}
 .theme{float:right;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
 @media (max-width:520px){.bar-row{grid-template-columns:80px 1fr 56px}}
 """
@@ -187,7 +213,7 @@ document.querySelectorAll('.filters button').forEach(function(b){b.addEventListe
  var g=b.parentNode.dataset.g;if(g==='sev')sev=b.dataset.v;else st=b.dataset.v;
  b.parentNode.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});apply();});});
 var key='production-ready-skill:'+location.pathname;var saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
-document.querySelectorAll('.chk input').forEach(function(i){i.checked=!!saved[i.dataset.k];i.addEventListener('change',function(){
+document.querySelectorAll('.chk input,.rm input').forEach(function(i){i.checked=!!saved[i.dataset.k];i.addEventListener('change',function(){
  saved[i.dataset.k]=i.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}});});
 var t=document.querySelector('.theme');if(t)t.addEventListener('click',function(){var r=document.documentElement;
  var dark=getComputedStyle(r).getPropertyValue('--bg').trim()==='#13110f';r.setAttribute('data-theme',dark?'light':'dark');});
@@ -225,6 +251,85 @@ def checklist(doc):
     return "".join(out)
 
 
+def _hm(m):
+    return ("%d h %02d min" % (m // 60, m % 60)) if m >= 60 else "%d min" % m
+
+
+def _fmt_date(s):
+    import datetime
+    return datetime.date.fromisoformat(s).strftime("%a %d %b").replace(" 0", " ")
+
+
+def roadmap(rm):
+    """The launch roadmap panel. Layout follows the design approved in OpenFrame."""
+    plan = rm.get("plan", [])
+    if not plan:
+        return ""
+    n = len(plan)
+    blockers = [(d["index"], t) for d in plan for t in d["tasks"] if t.get("severity") == "blocker"]
+    last_b = max((i for i, _ in blockers), default=0)
+    dates = [d.get("date") for d in plan if d.get("date")]
+    span = (" %s to %s," % (_fmt_date(dates[0]), _fmt_date(dates[-1]))) if dates else ""
+    sub = "%s about %g hours a day." % (span.strip(), rm.get("hours_per_day", 4)) if dates else "About %g hours a day." % rm.get("hours_per_day", 4)
+    if rm.get("verdict_at_planning"):
+        sub += " Planned from a %s verdict at readiness %s." % (rm["verdict_at_planning"], rm.get("readiness_at_planning"))
+    if blockers and not any(t.get("over_capacity") or t.get("at_risk") for _, t in blockers):
+        sub += " All %d blockers close by %s." % (len(blockers), plan[last_b - 1]["label"])
+    mx = max(max(d["minutes"] for d in plan), int(rm.get("hours_per_day", 4) * 60), 1)
+    bars = "".join('<div class="rm-bar%s"><span>%.1f h</span><b style="height:%dpx"></b></div>' % (
+        " l" if d["kind"] == "launch" else "", d["minutes"] / 60.0, max(4, round(d["minutes"] / mx * 110))) for d in plan)
+    labs = "".join('<span%s>%s</span>' % (' class="l"' if d["kind"] == "launch" else "", "Launch" if d["kind"] == "launch" else "Day %d" % d["index"]) for d in plan)
+    out = ['<div class="rm"><div class="rm-head"><div><h3>Launch in %d day%s</h3><p class="rm-sub">%s</p>'
+           '<div class="rm-leg"><span><i style="background:var(--a)"></i>Blocker</span><span><i style="background:var(--b)"></i>Should fix</span><span><i style="background:var(--m)"></i>Nice to have</span></div></div>'
+           '<div><div class="rm-bars">%s</div><div class="rm-bl">%s</div><p class="rm-cap">Planned work per day, in hours. Capacity is %g hours a day.</p></div></div>' % (
+               n, "" if n == 1 else "s", E(sub), bars, labs, rm.get("hours_per_day", 4))]
+    for w in rm.get("warnings", []):
+        out.append('<p class="rm-warn">%s</p>' % E(w))
+
+    def task(d, t, tm=None):
+        sev = t.get("severity")
+        dot = '<i style="background:%s"></i>' % {"blocker": "var(--a)", "should": "var(--b)", "nice": "var(--m)"}[sev] if sev in ("blocker", "should", "nice") else ""
+        flag = " risk" if (t.get("over_capacity") or t.get("at_risk")) else ""
+        lead = '<b class="tm">%s</b>' % tm if tm else ""
+        return ('<label class="rm-t%s"><input type="checkbox" data-k="roadmap:%d:%s">%s%s<span>%s%s</span><em>%d min</em></label>' % (
+            flag, d["index"], E(t["id"]), dot, lead, E(t["title"]), " (over capacity)" if t.get("over_capacity") else (" (at risk)" if t.get("at_risk") else ""), t["minutes"]))
+
+    def rail(d, big=False):
+        nb = sum(1 for t in d["tasks"] if t.get("severity") == "blocker")
+        h = '<p class="rail-h">Launch Day</p>' if big else '<h4>%s</h4>' % E(d["label"])
+        return '<div class="rm-rail">%s%s<p class="th">%s</p><p class="pr">%s of work</p>%s</div>' % (
+            h, '<p class="d">%s</p>' % _fmt_date(d["date"]) if d.get("date") else "", E(d["goal"] if big else d["theme"]), _hm(d["minutes"]),
+            '<p class="bk">%d blocker%s closed</p>' % (nb, "" if nb == 1 else "s") if nb else "")
+
+    def done(d):
+        return '<div class="rm-done"><b>Done when</b><span>%s</span></div>' % E("; ".join(d["exit_criteria"]) + ".")
+
+    for d in plan:
+        k = d["kind"]
+        if k == "work":
+            out.append('<section class="rm-day">%s<div class="rm-body"><div class="rm-list">%s</div>%s</div></section>' % (
+                rail(d), "".join(task(d, t) for t in d["tasks"]) or '<p class="rm-sub">Nothing scheduled: a buffer for overruns.</p>', done(d)))
+        elif k == "infra":
+            out.append('<section class="rm-day rm-infra">%s<div class="rm-body"><div class="rm-list one">%s</div>%s</div></section>' % (
+                rail(d), "".join(task(d, t) for t in d["tasks"]), done(d)))
+        elif k == "rehearsal":
+            out.append('<section class="rm-day rm-reh">%s<div class="rm-body"><h5>%s</h5><div class="rm-in"><div class="rm-list one">%s</div>%s</div></div></section>' % (
+                rail(d), E(d["goal"]), "".join(task(d, t) for t in d["tasks"]), done(d)))
+        else:
+            off, rows = 0, ""
+            for t in d["tasks"]:
+                rows += task(d, t, tm="%d:%02d" % (off // 60, off % 60))
+                off += t["minutes"]
+            out.append('<section class="rm-day rm-launch">%s<div class="rm-body"><div class="rm-list one">%s</div>%s</div></section>' % (rail(d, True), rows, done(d)))
+    if rm.get("deferred"):
+        out.append('<div class="rm-def"><h5>Moved to after launch</h5><ul>%s</ul></div>' % "".join(
+            "<li>%s (%s)</li>" % (E(t["title"]), E(t.get("severity") or "")) for t in rm["deferred"]))
+    out.append('<div class="rm-after"><h5>After launch, the plan keeps going.</h5><div class="c">%s</div></div>' % "".join(
+        "<div><b>%s</b><p>%s</p></div>" % (E(a["when"]), E(a["title"])) for a in rm.get("after_launch", [])))
+    out.append('<p class="rm-foot">Generated by /launch-roadmap. Estimates are rough and assume one person. Ticks are saved in this browser only.</p></div>')
+    return "".join(out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("project", nargs="?", default=".")
@@ -241,7 +346,10 @@ def main():
     logic = load(os.path.join(ld, "logic.json"), {})
     pricing = load(os.path.join(ld, "pricing.json"), {})
     chk = load(os.path.join(ld, "checklist.json"), {})
+    improve = load(os.path.join(ld, "improve.json"), {})
+    rm = load(os.path.join(ld, "roadmap.json"), {})
     items = list(fd["findings"]) + [dict(i, area=i.get("area", "logic")) for i in logic.get("issues", [])]
+    items += [dict(i, area=i.get("area", "business")) for i in improve.get("issues", []) if i.get("kind", "gap") == "gap"]
     cls = vd["verdict"].replace(" ", "-")
 
     body = ['<main><button class="theme" aria-label="Toggle theme">Theme</button><h1>Launch readiness: %s</h1><p class="muted">%s · generated %s</p>' % (
@@ -254,6 +362,8 @@ def main():
     body.append('<h2>Scores by area</h2><div class="grid"><div class="card">%s</div><div class="card"><table><tr><th>Area</th><th>Score</th><th>Verified</th><th>Fail</th><th>Unknown</th></tr>%s</table></div></div>' % (
         radar(vd["areas"]), "".join("<tr><td>%s</td><td>%s</td><td>%s</td><td>%d</td><td>%d</td></tr>" % (E(k), v["score"], v["confidence"], v["fail"], v["unknown"]) for k, v in vd["areas"].items())))
     body.append("<h2>Progress</h2><div class='card'>%s</div>" % history_chart(hist))
+    if rm.get("plan"):
+        body.append("<h2>Launch roadmap</h2>%s" % roadmap(rm))
     if inv:
         body.append("<h2>What your app actually is</h2><p class='muted'>Red = a finding points at this file.</p>%s" % arch_map(inv, items))
     if logic.get("journey"):

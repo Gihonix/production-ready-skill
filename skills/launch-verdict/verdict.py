@@ -4,7 +4,8 @@
 Stdlib only (Python 3.8+).
 
     python3 verdict.py [project_dir] [--findings launch/findings.json]
-                       [--logic launch/logic.json] [--out launch/verdict.json]
+                       [--logic launch/logic.json] [--improve launch/improve.json]
+                       [--out launch/verdict.json]
                        [--no-history]
 
 Rules (also documented in SKILL.md):
@@ -22,7 +23,7 @@ import sys
 
 W = {"blocker": 5, "should": 2, "nice": 1}
 MIN_FIX = {"auto": 10, "guided": 45, "manual": 30}
-AREA_ORDER = ["security", "payments", "data", "logic", "legal", "reliability", "auth", "email", "operations",
+AREA_ORDER = ["security", "payments", "data", "logic", "business", "legal", "reliability", "auth", "email", "operations",
               "seo", "accessibility", "performance", "config"]
 
 
@@ -60,6 +61,7 @@ def main():
     ap.add_argument("project", nargs="?", default=".")
     ap.add_argument("--findings")
     ap.add_argument("--logic")
+    ap.add_argument("--improve")
     ap.add_argument("--out")
     ap.add_argument("--no-history", action="store_true")
     a = ap.parse_args()
@@ -73,6 +75,13 @@ def main():
     for i in logic.get("issues", []):
         i.setdefault("area", "logic")
         i.setdefault("fix_tier", "guided")
+        items.append(i)
+    improve = load(a.improve or os.path.join(ld, "improve.json"), {"issues": []})
+    for i in improve.get("issues", []):
+        if i.get("kind", "gap") != "gap":
+            continue  # suggestions never move the verdict; only enforced gaps do
+        i.setdefault("area", "business")
+        i.setdefault("fix_tier", "manual")
         items.append(i)
 
     open_items = [f for f in items if f["status"] in ("FAIL", "UNKNOWN")]

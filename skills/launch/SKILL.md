@@ -26,14 +26,16 @@ is `launch-fix`, with approval.
 | 1 | `launch-scan` | What did the AI actually build? | `map.md`, `inventory.json`, `context.json` |
 | 2 | `launch-gaps` | What is missing or unsafe, with proof? | `findings.json`, `gaps.md` |
 | 3 | `launch-logic` | Does the business actually work? | `logic.json`, `logic.md` |
-| 4 | `launch-pricing` | What should I charge? | `pricing.md`, `pricing.json` |
-| 5 | `launch-verdict` | Can I go live? | `verdict.json`, `verdict.md`, `history.json` |
-| 6 | `launch-fix` | Fix what you found | commits on `launch-ready/fixes` |
-| 7 | `launch-report` | Show me | `report.html` |
-| 8 | `launch-day` | How do I go live safely? | `runbook.md` |
-| 9 | `launch-watch` | What do I watch after? | `watch.md`, `monitoring/` |
+| 4 | `launch-improve` | What business and logic gaps are there, and what would make it better? | `improve.json`, `improve.md` |
+| 5 | `launch-pricing` | What should I charge? | `pricing.md`, `pricing.json` |
+| 6 | `launch-verdict` | Can I go live? | `verdict.json`, `verdict.md`, `history.json` |
+| 7 | `launch-fix` | Fix what you found | commits on `launch-ready/fixes` |
+| 8 | `launch-report` | Show me | `report.html` |
+| 9 | `launch-roadmap` | What do I do each day until launch? | `roadmap.json`, `roadmap.md`, a design in OpenFrame |
+| 10 | `launch-day` | How do I go live safely? | `runbook.md` |
+| 11 | `launch-watch` | What do I watch after? | `watch.md`, `monitoring/` |
 
-`--quick` runs stages 1, 2, 5 and 7 only: a verdict and a picture in a few minutes.
+`--quick` runs stages 1, 2, 6 and 8 only: a verdict and a picture in a few minutes.
 
 ## How to run it
 
@@ -46,10 +48,11 @@ is `launch-fix`, with approval.
 2. Run stages in order, invoking each skill (`/launch-scan` and so on). Between stages,
    give the owner one or two plain sentences on what was found. Keep the tone calm:
    most vibe-coded apps have fixable gaps; the point is to see them.
-3. After stage 5, stop and show the verdict. Ask what to do next: fix the blockers
-   (stage 6), see the report (7), or go straight to the runbook (8).
-4. After fixes, re-run stages 2, 5 and 7 so the owner sees the score move.
-5. Finish with `launch-day` and `launch-watch`. End with the one thing to do first
+3. After stage 6, stop and show the verdict. Ask what to do next: fix the blockers
+   (stage 7), see the report (8), plan the days to launch (9), or go straight to the
+   runbook (10).
+4. After fixes, re-run stages 2, 4, 6 and 8 so the owner sees the score move.
+5. Finish with `launch-roadmap` (ask how many days), `launch-day` and `launch-watch`. End with the one thing to do first
    tomorrow morning.
 
 ## Honest limits (say them once, early)
