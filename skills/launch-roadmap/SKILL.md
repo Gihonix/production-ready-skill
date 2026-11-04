@@ -3,9 +3,8 @@ name: launch-roadmap
 description: >-
   Asks how many days until launch and turns the open audit findings into a day-by-day
   roadmap: Day 1, Day 2, and so on up to Launch Day, saying what to do each day, how
-  long it takes and when each day is done. Designs the roadmap as a visual in
-  OpenFrame first and only builds it into the report after the owner approves. Use
-  when the user says "make a launch roadmap", "I want to launch in 7 days", "what do
+  long it takes and when each day is done, and shows it in the report using a fixed
+  template. Use when the user says "make a launch roadmap", "I want to launch in 7 days", "what do
   I do each day", "launch timeline", "plan my launch week", or after /launch-verdict
   or /launch-improve.
 argument-hint: "[days until launch] [project folder]"
