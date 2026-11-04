@@ -1,0 +1,19 @@
+{
+  "name": "production-ready-skill",
+  "version": "0.1.0",
+  "description": "Go live with confidence: understand what your AI-built app contains, find gaps with evidence, review business logic, price from competitor data, get a computed Ready/Almost/Not-yet verdict, fix safely, and get a launch-day runbook plus a post-launch watch plan.",
+  "author": {
+    "name": "Gihonix Solutions"
+  },
+  "license": "MIT",
+  "keywords": [
+    "launch",
+    "production-readiness",
+    "vibe-coding",
+    "audit",
+    "checklist",
+    "pricing",
+    "monitoring"
+  ],
+  "skills": "./skills"
+}
