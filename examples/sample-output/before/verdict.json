@@ -1,0 +1,142 @@
+{
+  "generated": "2026-11-04T11:20:40Z",
+  "verdict": "Not yet",
+  "readiness": 10,
+  "confidence": 72,
+  "blockers_open": 10,
+  "blockers_failing": 7,
+  "blockers_unverified": 3,
+  "open_total": 35,
+  "passed": 4,
+  "estimated_blocker_fix_minutes": 350,
+  "areas": {
+    "security": {
+      "score": 18,
+      "confidence": 95,
+      "pass": 2,
+      "fail": 9,
+      "unknown": 1
+    },
+    "payments": {
+      "score": 0,
+      "confidence": 26,
+      "pass": 0,
+      "fail": 1,
+      "unknown": 4
+    },
+    "data": {
+      "score": 22,
+      "confidence": 44,
+      "pass": 1,
+      "fail": 1,
+      "unknown": 1
+    },
+    "legal": {
+      "score": 0,
+      "confidence": 100,
+      "pass": 0,
+      "fail": 3,
+      "unknown": 0
+    },
+    "reliability": {
+      "score": 0,
+      "confidence": 85,
+      "pass": 0,
+      "fail": 6,
+      "unknown": 1
+    },
+    "auth": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "email": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "operations": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "seo": {
+      "score": 0,
+      "confidence": 100,
+      "pass": 0,
+      "fail": 2,
+      "unknown": 0
+    },
+    "accessibility": {
+      "score": 0,
+      "confidence": 100,
+      "pass": 0,
+      "fail": 1,
+      "unknown": 0
+    },
+    "performance": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 1,
+      "fail": 0,
+      "unknown": 0
+    },
+    "config": {
+      "score": 0,
+      "confidence": 100,
+      "pass": 0,
+      "fail": 2,
+      "unknown": 0
+    }
+  },
+  "top_fixes": [
+    {
+      "id": "SEC-01",
+      "title": "No .env file committed to the repo",
+      "severity": "blocker",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "Anyone with repo access (or a leak) gets your real keys and can run up your bills or read your data."
+    },
+    {
+      "id": "SEC-03",
+      "title": "No secrets hard-coded in source",
+      "severity": "blocker",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "Keys in code end up in git history and, for frontend code, in every visitor's browser."
+    },
+    {
+      "id": "SEC-04",
+      "title": "Every API route that changes or reveals user data checks who is calling",
+      "severity": "blocker",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "An unprotected route lets anyone on the internet read or edit other users' data."
+    },
+    {
+      "id": "SEC-10",
+      "title": "Database access rules (row-level security) are enabled",
+      "severity": "blocker",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "With Supabase/Firebase, the browser talks to the database directly: no rules means anyone can read everything."
+    },
+    {
+      "id": "PAY-01",
+      "title": "Payment webhooks verify the signature",
+      "severity": "blocker",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "Without it anyone can POST a fake 'payment succeeded' and get your product free."
+    }
+  ],
+  "soft_launch": "Not with real users' data or money yet. Open blockers in data, payments, security could expose data or lose money. Fix those first, then a small private beta is reasonable.",
+  "unconfirmed_heuristics": 12
+}

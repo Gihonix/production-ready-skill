@@ -1,0 +1,177 @@
+{
+  "project": "my-saas-app",
+  "root_hint": "my-saas-app",
+  "languages": {
+    "javascript": 1,
+    "typescript": 13
+  },
+  "stack": [
+    "next",
+    "react"
+  ],
+  "package_manager": null,
+  "lockfiles": [
+    "package-lock.json"
+  ],
+  "routes": [
+    {
+      "path": "/api/health",
+      "file": "app/api/health/route.ts",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    },
+    {
+      "path": "/api/orders",
+      "file": "app/api/orders/route.ts",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": true,
+      "framework": "next"
+    },
+    {
+      "path": "/api/stripe/webhook",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 1,
+      "methods": [
+        "POST"
+      ],
+      "auth": false,
+      "framework": "next"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "file": "app/page.tsx",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    },
+    {
+      "path": "/privacy",
+      "file": "app/privacy/page.tsx",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    },
+    {
+      "path": "/refund-policy",
+      "file": "app/refund-policy/page.tsx",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    },
+    {
+      "path": "/terms",
+      "file": "app/terms/page.tsx",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    }
+  ],
+  "models": [
+    {
+      "name": "orders",
+      "file": "supabase/migrations/001.sql",
+      "line": 1,
+      "kind": "sql"
+    }
+  ],
+  "services": [
+    {
+      "name": "next-auth",
+      "file": "app/api/orders/route.ts",
+      "line": 1
+    },
+    {
+      "name": "sentry",
+      "file": "dependency manifest",
+      "line": 0
+    },
+    {
+      "name": "stripe",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 1
+    },
+    {
+      "name": "supabase",
+      "file": "app/api/orders/route.ts",
+      "line": 2
+    },
+    {
+      "name": "upstash",
+      "file": "app/api/orders/route.ts",
+      "line": 4
+    }
+  ],
+  "env_vars": [
+    {
+      "name": "NEXT_PUBLIC_SUPABASE_URL",
+      "file": "lib/db.ts",
+      "line": 2
+    },
+    {
+      "name": "STRIPE_SECRET_KEY",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 2
+    },
+    {
+      "name": "STRIPE_WEBHOOK_SECRET",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 5
+    },
+    {
+      "name": "SUPABASE_SERVICE_ROLE_KEY",
+      "file": "lib/db.ts",
+      "line": 2
+    }
+  ],
+  "env_files_committed": [],
+  "env_example": true,
+  "middleware": [],
+  "tests": [
+    "package.json (test runner in deps)",
+    "tests/orders.test.ts"
+  ],
+  "ci": [
+    ".github/workflows/ci.yml"
+  ],
+  "deploy": [],
+  "docs": [
+    "README.md"
+  ],
+  "legal_pages": [
+    "app/privacy/page.tsx",
+    "app/refund-policy/page.tsx",
+    "app/terms/page.tsx"
+  ],
+  "has_git": false,
+  "files_scanned": 21,
+  "gitignore_covers_env": true,
+  "summary": {
+    "routes": 3,
+    "pages": 4,
+    "models": 1,
+    "services": 5,
+    "env_vars": 4,
+    "routes_without_auth": 2
+  }
+}

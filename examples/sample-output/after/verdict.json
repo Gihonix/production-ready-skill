@@ -1,0 +1,142 @@
+{
+  "generated": "2026-11-04T11:20:41Z",
+  "verdict": "Ready",
+  "readiness": 84,
+  "confidence": 86,
+  "blockers_open": 0,
+  "blockers_failing": 0,
+  "blockers_unverified": 0,
+  "open_total": 8,
+  "passed": 31,
+  "estimated_blocker_fix_minutes": 0,
+  "areas": {
+    "security": {
+      "score": 95,
+      "confidence": 95,
+      "pass": 11,
+      "fail": 0,
+      "unknown": 1
+    },
+    "payments": {
+      "score": 79,
+      "confidence": 79,
+      "pass": 3,
+      "fail": 0,
+      "unknown": 2
+    },
+    "data": {
+      "score": 78,
+      "confidence": 100,
+      "pass": 2,
+      "fail": 1,
+      "unknown": 0
+    },
+    "legal": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 3,
+      "fail": 0,
+      "unknown": 0
+    },
+    "reliability": {
+      "score": 85,
+      "confidence": 85,
+      "pass": 6,
+      "fail": 0,
+      "unknown": 1
+    },
+    "auth": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "email": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "operations": {
+      "score": 0,
+      "confidence": 0,
+      "pass": 0,
+      "fail": 0,
+      "unknown": 1
+    },
+    "seo": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 2,
+      "fail": 0,
+      "unknown": 0
+    },
+    "accessibility": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 1,
+      "fail": 0,
+      "unknown": 0
+    },
+    "performance": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 1,
+      "fail": 0,
+      "unknown": 0
+    },
+    "config": {
+      "score": 100,
+      "confidence": 100,
+      "pass": 2,
+      "fail": 0,
+      "unknown": 0
+    }
+  },
+  "top_fixes": [
+    {
+      "id": "DATA-03",
+      "title": "Users can delete their account/data",
+      "severity": "should",
+      "status": "FAIL",
+      "fix_tier": "guided",
+      "why": "Privacy laws (GDPR/CCPA) expect it, and users ask within weeks."
+    },
+    {
+      "id": "SEC-11",
+      "title": "Dependencies have no known critical vulnerabilities",
+      "severity": "should",
+      "status": "UNKNOWN",
+      "fix_tier": "guided",
+      "why": "Old packages are the most common way small apps get hacked."
+    },
+    {
+      "id": "PAY-02",
+      "title": "Webhook handling is idempotent (same event twice = one effect)",
+      "severity": "should",
+      "status": "UNKNOWN",
+      "fix_tier": "guided",
+      "why": "Payment providers retry; duplicates can double-grant credits or double-send emails."
+    },
+    {
+      "id": "PAY-04",
+      "title": "Failed payment and cancellation paths exist",
+      "severity": "should",
+      "status": "UNKNOWN",
+      "fix_tier": "guided",
+      "why": "Cards fail and customers cancel every week. Without handling, access and billing drift apart."
+    },
+    {
+      "id": "REL-07",
+      "title": "Outbound calls (APIs, AI, email) have timeouts and failure handling",
+      "severity": "should",
+      "status": "UNKNOWN",
+      "fix_tier": "guided",
+      "why": "One slow third party can hang every request or crash the server."
+    }
+  ],
+  "soft_launch": "Yes. Open it to real users, starting small and watching the first day (see launch-watch).",
+  "unconfirmed_heuristics": 9
+}

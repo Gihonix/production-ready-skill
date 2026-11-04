@@ -1,0 +1,108 @@
+{
+  "project": "my-saas-app",
+  "root_hint": "my-saas-app",
+  "languages": {
+    "typescript": 5
+  },
+  "stack": [
+    "next",
+    "react"
+  ],
+  "package_manager": null,
+  "lockfiles": [],
+  "routes": [
+    {
+      "path": "/api/orders",
+      "file": "app/api/orders/route.ts",
+      "line": 1,
+      "methods": [
+        "DELETE",
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    },
+    {
+      "path": "/api/stripe/webhook",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 1,
+      "methods": [
+        "POST"
+      ],
+      "auth": false,
+      "framework": "next"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "file": "app/page.tsx",
+      "line": 1,
+      "methods": [
+        "GET"
+      ],
+      "auth": false,
+      "framework": "next"
+    }
+  ],
+  "models": [
+    {
+      "name": "orders",
+      "file": "supabase/migrations/001.sql",
+      "line": 1,
+      "kind": "sql"
+    }
+  ],
+  "services": [
+    {
+      "name": "stripe",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 1
+    },
+    {
+      "name": "supabase",
+      "file": "app/api/orders/route.ts",
+      "line": 1
+    }
+  ],
+  "env_vars": [
+    {
+      "name": "NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY",
+      "file": "lib/db.ts",
+      "line": 2
+    },
+    {
+      "name": "NEXT_PUBLIC_SUPABASE_URL",
+      "file": "lib/db.ts",
+      "line": 2
+    },
+    {
+      "name": "STRIPE_SECRET_KEY",
+      "file": "app/api/stripe/webhook/route.ts",
+      "line": 2
+    }
+  ],
+  "env_files_committed": [
+    ".env"
+  ],
+  "env_example": false,
+  "middleware": [],
+  "tests": [],
+  "ci": [],
+  "deploy": [],
+  "docs": [
+    "README.md"
+  ],
+  "legal_pages": [],
+  "has_git": false,
+  "files_scanned": 9,
+  "gitignore_covers_env": false,
+  "summary": {
+    "routes": 2,
+    "pages": 1,
+    "models": 1,
+    "services": 2,
+    "env_vars": 3,
+    "routes_without_auth": 2
+  }
+}
