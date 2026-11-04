@@ -1,0 +1,34 @@
+name: Wrong result (false positive / false negative)
+description: A check flagged something that is fine, or missed a real problem. The most useful report for this project.
+labels: [accuracy]
+body:
+  - type: input
+    id: check
+    attributes:
+      label: Check id
+      placeholder: SEC-04
+    validations: {required: true}
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong
+      options: ["False positive (flagged, but fine)", "False negative (missed a real problem)", "Wrong severity", "Misleading explanation"]
+    validations: {required: true}
+  - type: input
+    id: stack
+    attributes:
+      label: Stack
+      placeholder: Next.js 14 + Supabase + Stripe
+    validations: {required: true}
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Minimal code that reproduces it
+      description: Remove or replace any real keys, tokens and personal data first.
+      render: text
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations: {required: true}

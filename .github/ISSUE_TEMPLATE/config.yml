@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/Gihonix/production-ready-skill/discussions
+    about: Ask how something works or float an idea before filing an issue.
+  - name: Security problem
+    url: https://github.com/Gihonix/production-ready-skill/security/advisories/new
+    about: Report vulnerabilities privately, not in a public issue.

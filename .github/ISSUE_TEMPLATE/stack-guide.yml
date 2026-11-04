@@ -1,0 +1,20 @@
+name: Propose a stack guide
+description: Extra checks for a framework or service (Laravel, Rails, SvelteKit, Remix, Clerk...).
+labels: [enhancement, stack-guide]
+body:
+  - type: input
+    id: stack
+    attributes:
+      label: Stack
+    validations: {required: true}
+  - type: textarea
+    id: checks
+    attributes:
+      label: The 5 to 10 things that most often go wrong in this stack at launch
+    validations: {required: true}
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you write it?
+      options:
+        - label: I can open a PR (see CONTRIBUTING.md)

@@ -1,0 +1,31 @@
+name: Propose a new check
+description: Something launch-ready should look for.
+labels: [enhancement, new-check]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Check title
+      placeholder: File uploads have a size and type limit
+    validations: {required: true}
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters, in one plain sentence
+      description: Written for someone who did not write the code.
+    validations: {required: true}
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Suggested severity
+      options: ["blocker (hurts users, money or data on day one)", "should (fix within 30 days)", "nice (polish)"]
+    validations: {required: true}
+  - type: textarea
+    id: detect
+    attributes:
+      label: How can it be detected from code?
+      description: Patterns, files, or "not detectable, ask the owner".
+  - type: textarea
+    id: fix
+    attributes:
+      label: What is the fix?
