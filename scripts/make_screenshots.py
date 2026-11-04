@@ -81,8 +81,8 @@ def main():
                 target = os.path.join(tmp, "mobile-frame.html")
                 open(target, "w").write(
                     '<body style="margin:0;background:#e7e5e4;display:flex;justify-content:center;padding:30px 0">'
-                    '<iframe src="file://%s" style="width:390px;height:1250px;border:10px solid #1c1917;border-radius:38px;background:#fafaf9"></iframe></body>' % p)
-                size = "520,1400"
+                    '<iframe src="file://%s" style="width:390px;height:1170px;border:10px solid #1c1917;border-radius:38px;background:#fafaf9"></iframe></body>' % p)
+                size = "520,1320"
             subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-device-scale-factor=2",
                             "--window-size=" + size, "--virtual-time-budget=2000", "--screenshot=" + out, "file://" + target],
                            check=True, capture_output=True)
