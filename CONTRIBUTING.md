@@ -20,4 +20,6 @@ Create `skills/launch-gaps/stacks/<stack>.md`: a short list of extra checks (ids
 - No network in scripts. Web research belongs in skill instructions and must cite links.
 
 ## Before a PR
-`python3 tests/run_tests.py` must pass.
+`python3 tests/run_tests.py` must pass. CI runs it on Linux, macOS and Windows with Python 3.8, 3.10 and 3.12, and checks that `checklist.md` matches the catalog.
+
+By contributing you agree your work is released under the MIT license. Please follow the [Code of Conduct](CODE_OF_CONDUCT.md). Report security problems privately: see [SECURITY.md](SECURITY.md).

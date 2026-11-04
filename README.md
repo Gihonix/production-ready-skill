@@ -1,5 +1,7 @@
 <h1 align="center">production-ready-skill</h1>
 
+<p align="center"><a href="https://github.com/Gihonix/production-ready-skill/actions/workflows/tests.yml"><img src="https://github.com/Gihonix/production-ready-skill/actions/workflows/tests.yml/badge.svg" alt="tests"></a> <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></p>
+
 <p align="center"><b>Your AI wrote the code. Who checks it before real users do?</b></p>
 
 <p align="center">
