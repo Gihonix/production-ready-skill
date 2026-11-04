@@ -5,7 +5,7 @@
 <p align="center"><b>Your AI wrote the code. Who checks it before real users do?</b></p>
 
 <p align="center">
-Ten <a href="https://claude.com/claude-code">Claude Code</a> skills that read your vibe-coded app, tell you what's actually in it, find what's missing <i>with proof</i>, and hand you a Ready / Almost / Not-yet verdict you can trust, then fix it, price it and plan the first 30 days live.
+Twelve <a href="https://claude.com/claude-code">Claude Code</a> skills that read your vibe-coded app, tell you what's actually in it, find what's missing <i>with proof</i>, and hand you a Ready / Almost / Not-yet verdict you can trust, then fix it, price it and plan the first 30 days live.
 </p>
 
 <p align="center">
@@ -31,15 +31,16 @@ So the app sits there, finished and unlaunched.
 /launch
 ```
 
-It answers the five questions that stand between you and going live:
+It answers the questions that stand between you and going live:
 
 | You're asking | this pack answers with |
 | --- | --- |
 | **What did the AI actually build?** | A plain-English tour: pages, API routes, data, services, and where your money and users' data touch the code |
 | **What am I missing?** | A 40-item checklist run on *your* code. Every failure cites `file:line` |
 | **Does the business actually work?** | The signup → pay → cancel path, paywall leaks, bot-cost abuse, flows nobody built |
+| **What's missing besides code?** | 19 business essentials (clear promise, refund terms, support, a first channel) plus logical gaps like a price below cost, ranked improvements. Essential gaps count in the verdict |
 | **What should I charge?** | Real competitor prices (linked), your cost per user, break-even, tiers |
-| **Am I ready, and what then?** | A *computed* verdict, safe fixes on a git branch, a go-live runbook and a post-launch watch plan |
+| **Am I ready, and what then?** | A *computed* verdict, safe fixes on a git branch, a **day-by-day roadmap to your launch date**, a go-live runbook and a post-launch watch plan |
 
 ## See it
 
@@ -53,7 +54,11 @@ A real run on the demo app in [`examples/`](examples/sample-output) (a small Nex
 
 <img src="docs/img/map.png" alt="App map of pages, API routes, data and services with failing files in red" width="860">
 
-**Scores by area** so you know where the weight is:
+**A day-by-day roadmap to your launch date.** Tell it you launch in 7 days and every open finding gets scheduled, blockers first, with a "done when" for each day:
+
+<img src="docs/img/roadmap.png" alt="Launch in 7 days roadmap with hours per day chart and Day 1 tasks" width="860">
+
+**Scores by area** (now including business essentials) so you know where the weight is:
 
 <img src="docs/img/scores.png" alt="Radar chart and table of scores by area: security, payments, data, legal, reliability and more" width="860">
 
@@ -102,6 +107,8 @@ Run `/launch` for the whole journey, or any skill on its own. Everything is writ
 | Checklist catalog | [`checks.py`](skills/launch-gaps/checks.py) / [`checklist.md`](skills/launch-gaps/checklist.md) | 40 items, 30 of them mechanically checkable; severity rises with context (money, personal data) |
 | Stack guides | [`stacks/`](skills/launch-gaps/stacks) | Next.js, Node/Express, Python, Supabase, Stripe, Firebase |
 | Fix recipes | [`fixes/`](skills/launch-fix/fixes) | 37, one per fixable finding |
+| Business essentials | [`essentials.md`](skills/launch-improve/essentials.md) | 19 items in six groups (clarity, money, trust, learning, growth, continuity) plus logical-gap cross-checks |
+| Roadmap planner | [`roadmap.py`](skills/launch-roadmap/roadmap.py) | Schedules every open finding into Day 1 to Launch Day (1 to 90 days); blockers are never pushed past launch |
 | Verdict rules | [`verdict.py`](skills/launch-verdict/verdict.py) | Deterministic and documented, never hand-written |
 | Cost model | [`cost_model.py`](skills/launch-pricing/cost_model.py) | Per-user contribution, margin, break-even, profit at N users |
 | Watch templates | [`templates/`](skills/launch-watch/templates) | Health endpoint, error tracking, uptime checks, alert rules, incident playbook |
@@ -112,11 +119,14 @@ Run `/launch` for the whole journey, or any skill on its own. Everything is writ
 flowchart LR
   A[scan<br/>what exists] --> B[gaps<br/>what's missing]
   B --> C[logic<br/>does it earn]
-  C --> D[pricing<br/>what to charge]
+  C --> I[improve<br/>business gaps]
+  I --> D[pricing<br/>what to charge]
   D --> E{verdict<br/>computed}
   E -->|Not yet / Almost| F[fix<br/>on a branch]
   F --> B
-  E -->|Ready| G[day<br/>runbook]
+  E --> M[roadmap<br/>day by day]
+  M --> G[day<br/>runbook]
+  E -->|Ready| G
   G --> H[watch<br/>post-launch]
   E --> R[report<br/>visual]
 ```
@@ -167,7 +177,7 @@ It reads code and config. It can't see your dashboards, DNS, live data or real t
 ## Develop
 
 ```bash
-python3 tests/run_tests.py                 # 45 checks on fixture apps with planted flaws
+python3 tests/run_tests.py                 # end-to-end checks on fixture apps with planted flaws
 python3 scripts/make_sample.py             # regenerate examples/sample-output
 python3 scripts/make_screenshots.py        # regenerate docs/img (needs Chrome and Pillow)
 ```
